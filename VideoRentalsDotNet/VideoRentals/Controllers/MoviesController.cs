@@ -20,7 +20,7 @@ namespace VideoRentals.Controllers
             {
                 if (movies.Select(m => m.Id == Id)?.Count() > 0)
                 {
-                    return View(movies.Select(m => m.Id == Id).ToList());
+                    return View(movies.Where(m => m.Id == Id).ToList());
                 }
             }
 
