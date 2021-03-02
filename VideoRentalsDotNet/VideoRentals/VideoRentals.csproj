@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Movies\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Capture\" />
+    <Folder Include="Content\" />
+    <Folder Include="wwwroot\CameraPhotos\" />
+  </ItemGroup>
+</Project>
