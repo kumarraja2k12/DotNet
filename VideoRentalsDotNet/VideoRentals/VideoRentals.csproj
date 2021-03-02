@@ -10,5 +10,6 @@
     <Folder Include="Views\Capture\" />
     <Folder Include="Content\" />
     <Folder Include="wwwroot\CameraPhotos\" />
+    <Folder Include="Views\Customers\" />
   </ItemGroup>
 </Project>

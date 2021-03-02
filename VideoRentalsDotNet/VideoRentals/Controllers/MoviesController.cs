@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using VideoRentals.Models;
 using VideoRentals.ViewModels;
@@ -7,6 +8,25 @@ namespace VideoRentals.Controllers
 {
     public class MoviesController : Controller
     {
+        public IActionResult Index(int? Id)
+        {
+            List<MovieModel> movies = new List<MovieModel>
+            {
+                new MovieModel { Id =1,  Name = "Shrek !" },
+                new MovieModel { Id =2, Name = "Wall-E" }
+            };
+
+            if (Id.HasValue)
+            {
+                if (movies.Select(m => m.Id == Id)?.Count() > 0)
+                {
+                    return View(movies.Select(m => m.Id == Id).ToList());
+                }
+            }
+
+            return View(movies);
+        }
+
         // GET: /movies/random
         public IActionResult Random()
         {
