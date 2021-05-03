@@ -19,6 +19,7 @@ namespace Vidly.Controllers
                 new Customer { Id = 1,  Name = "Customer 1" },
                 new Customer { Id = 2,  Name = "Customer 2" }
             };
+
             return View(customers);
         }
     }

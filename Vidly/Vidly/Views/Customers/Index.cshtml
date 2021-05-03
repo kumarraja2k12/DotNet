@@ -7,10 +7,16 @@
 
 <h1>Customers</h1>
 
-<ul>
-    @foreach (var customer in Model)
-    {
-        <li>@customer.Name</li>
-        @Html.ActionLink(customer.Name, "Index", "Customer", routeValues: new { Id = customer.Id });
-    }
-</ul>
+@if (Model != null && Model.Count > 0)
+{
+    <ul>
+        @foreach (var customer in Model)
+        {
+            <li>@Html.ActionLink(customer.Name, "Index", "Customer", routeValues: new { Id = customer.Id })</li>
+        }
+    </ul>
+}
+else
+{
+    <text>No customers available!</text>
+}
