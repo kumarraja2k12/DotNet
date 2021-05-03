@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Movies\" />
+    <Folder Include="Models\Movies\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Models\Customers\" />
+    <Folder Include="Views\Customers\" />
+    <Folder Include="Views\Customer\" />
+  </ItemGroup>
+</Project>
