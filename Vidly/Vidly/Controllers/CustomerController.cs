@@ -12,11 +12,11 @@ namespace Vidly.Controllers
         {
             var customers = new List<Customer>
             {
-                new Customer { Id = 1,  Name = "Customer 1" },
-                new Customer { Id = 2,  Name = "Customer 2" }
+                new Customer { ID = 1,  Name = "Customer 1" },
+                new Customer { ID = 2,  Name = "Customer 2" }
             };
 
-            var customer = customers.Where(customer => customer.Id == Id)?.FirstOrDefault();
+            var customer = customers.Where(customer => customer.ID == Id)?.FirstOrDefault();
 
             if (customer != null)
             {
