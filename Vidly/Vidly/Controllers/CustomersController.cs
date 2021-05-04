@@ -21,7 +21,7 @@ namespace Vidly.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Customers.ToListAsync());
+            return View(await _context.Customers.Include(c => c.MembershipType).ToListAsync());
         }
 
         // GET: Customers/Details/5
@@ -33,6 +33,7 @@ namespace Vidly.Controllers
             }
 
             var customer = await _context.Customers
+                .Include(c => c.MembershipType)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (customer == null)
             {
