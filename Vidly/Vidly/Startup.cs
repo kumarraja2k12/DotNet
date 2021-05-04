@@ -26,8 +26,11 @@ namespace Vidly
         {
             services.AddControllersWithViews();
 
+            //services.AddDbContext<VidlyDbContext>(options =>
+            //        options.UseSqlite(Configuration.GetConnectionString("VidlyDbContext")));
+
             services.AddDbContext<VidlyDbContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("VidlyDbContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("VidlyDbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
