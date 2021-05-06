@@ -1,0 +1,20 @@
+﻿@model Vidly.Models.Customers.Customer
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <hr />
+    <h4>Name: @Model.Name</h4>
+    @if (!string.IsNullOrEmpty(Model.DateOfBirth))
+    {
+        <h4>Date of Birth: @Model.DateOfBirth</h4>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

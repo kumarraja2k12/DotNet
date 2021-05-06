@@ -12,5 +12,6 @@ namespace Vidly.Models.Customers
         public bool IsSubscribedToNewsletter { get; set; }
         public MembershipType MembershipType { get; set; }
         public int MembershipTypeId { get; set; }
+        public string DateOfBirth { get; set; }
     }
 }

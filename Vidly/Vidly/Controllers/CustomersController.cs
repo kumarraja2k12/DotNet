@@ -24,6 +24,19 @@ namespace Vidly.Controllers
             return View(await _context.Customers.Include(c => c.MembershipType).ToListAsync());
         }
 
+        public ActionResult CustomerDetails(int? Id)
+        {
+            if (Id.HasValue)
+            {
+                var customer = _context.Customers
+                    .Include(c => c.MembershipType)
+                    .FirstOrDefault(m => m.ID == Id);
+                return View(customer);
+            }
+
+            return NotFound();
+        }
+
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
