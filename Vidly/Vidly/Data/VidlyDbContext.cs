@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Vidly.Models.Customers;
+using Vidly.Models.Movies;
 
 public class VidlyDbContext : DbContext
 {
@@ -10,8 +11,11 @@ public class VidlyDbContext : DbContext
 
     public DbSet<Customer> Customers { get; set; }
 
+    public DbSet<Movie> Movies { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Customer>().ToTable("Customer");
+        //modelBuilder.Entity<Customer>().ToTable("Customer");
+        //modelBuilder.Entity<Movie>().ToTable("Movies");
     }
 }

@@ -1,0 +1,47 @@
+@model IEnumerable<Vidly.Models.Movies.Movie>
+
+@{ ViewData["Title"] = "Videos"; }
+
+<h1>Videos</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@if (Model != null && Model.Count() > 0)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>Movie Name</th>
+            <th>Genre</th>
+            <th>Number in Stock</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "MovieDetails", "Movies", routeValues: new { Id = item.Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => @item.Genre.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberInStock)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
+else
+{
+    <h4>No Movies found!</h4>
+}

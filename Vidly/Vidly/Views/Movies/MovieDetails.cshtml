@@ -1,0 +1,20 @@
+﻿@model Vidly.Models.Movies.Movie
+
+@{
+    ViewData["Title"] = "Video Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <hr />
+    <h4>Name: @Model.Name</h4>
+    <h4>Genre: @Model.Genre.Name</h4>
+    <h4>Release Date: @Model.ReleaseDate</h4>
+    <h4>Date Added: @Model.DateAdded</h4>
+    <h4>Number in Stock: @Model.NumberInStock</h4>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
