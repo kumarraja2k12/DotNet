@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Vidly.Models.Customers;
 using Vidly.ViewModels;
@@ -22,13 +19,26 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(CustomerViewModel model)
         {
-            _context.Customers.Add(model.Customer);
+            if (model.Customer.ID == 0)
+            {
+                _context.Customers.Add(model.Customer);
+            }
+            else
+            {
+                //_ = TryUpdateModelAsync(model.Customer);
+                var customerInDb = _context.Customers.Single(c => c.ID == model.Customer.ID);
+                customerInDb.Name = model.Customer.Name;
+                customerInDb.DateOfBirth = model.Customer.DateOfBirth;
+                customerInDb.IsSubscribedToNewsletter = model.Customer.IsSubscribedToNewsletter;
+                customerInDb.MembershipTypeId = model.Customer.MembershipTypeId;
+            }
+            
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
         }
 
-        public ActionResult New()
+        public ActionResult CustomerForm()
         {
             var customerViewModel = new CustomerViewModel
             {
@@ -46,12 +56,19 @@ namespace Vidly.Controllers
 
         public ActionResult CustomerDetails(int? Id)
         {
-            if (Id.HasValue)
+            if (Id != null && Id.HasValue)
             {
                 var customer = _context.Customers
                     .Include(c => c.MembershipType)
                     .FirstOrDefault(m => m.ID == Id);
-                return View(customer);
+
+                var model = new CustomerViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipType.ToList()
+                };
+
+                return View("CustomerForm", model);
             }
 
             return NotFound();
