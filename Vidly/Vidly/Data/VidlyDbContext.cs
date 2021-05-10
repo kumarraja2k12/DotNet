@@ -15,6 +15,8 @@ public class VidlyDbContext : DbContext
 
     public DbSet<MembershipType> MembershipType { get; set; }
 
+    public DbSet<Genre> Genre { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //modelBuilder.Entity<Customer>().ToTable("Customer");

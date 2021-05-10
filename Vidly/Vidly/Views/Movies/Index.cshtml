@@ -1,11 +1,13 @@
 @model IEnumerable<Vidly.Models.Movies.Movie>
 
-@{ ViewData["Title"] = "Movies"; }
+@{
+    ViewData["Title"] = "Movies";
+}
 
 <h1>Movies</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="MovieForm">Create New Movie</a>
 </p>
 @if (Model != null && Model.Count() > 0)
 {

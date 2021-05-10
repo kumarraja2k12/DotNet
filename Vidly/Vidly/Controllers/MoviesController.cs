@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,46 @@ namespace Vidly.Controllers
         public MoviesController(VidlyDbContext context)
         {
             _context = context;
+        }
+
+        public IActionResult MovieForm()
+        {
+            var model = new MovieViewModel
+            {
+                Genre = _context.Genre.ToList()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Save(MovieViewModel model)
+        {
+            if (model.Movie.Id == 0)
+            {
+                _context.Movies.Add(model.Movie);
+            }
+            else
+            {
+                var movieInDb =_context.Movies.Single(m => m.Id == model.Movie.Id);
+
+                movieInDb.Name = model.Movie.Name;
+                movieInDb.NumberInStock = model.Movie.NumberInStock;
+                movieInDb.DateAdded = model.Movie.DateAdded;
+                movieInDb.GenreId = model.Movie.GenreId;
+            }
+
+            try
+            {
+                _context.SaveChanges(); 
+
+            } catch (System.Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            
+
+            return RedirectToAction("Index", "Movies");
         }
 
         // GET: /<controller>/random
@@ -47,7 +88,14 @@ namespace Vidly.Controllers
                 var movie = _context.Movies
                     .Include(c => c.Genre)
                     .FirstOrDefault(m => m.Id == Id);
-                return View(movie);
+
+                var model = new MovieViewModel
+                {
+                    Movie = movie,
+                    Genre = _context.Genre.ToList()
+                };
+
+                return View("MovieForm", model);
             }
 
             return NotFound();
