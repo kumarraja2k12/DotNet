@@ -13,6 +13,8 @@ public class VidlyDbContext : DbContext
 
     public DbSet<Movie> Movies { get; set; }
 
+    public DbSet<MembershipType> MembershipType { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //modelBuilder.Entity<Customer>().ToTable("Customer");

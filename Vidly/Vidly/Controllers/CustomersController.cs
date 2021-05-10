@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Vidly.Models.Customers;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -16,6 +17,25 @@ namespace Vidly.Controllers
         public CustomersController(VidlyDbContext context)
         {
             _context = context;
+        }
+
+        [HttpPost]
+        public ActionResult Save(CustomerViewModel model)
+        {
+            _context.Customers.Add(model.Customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
+        public ActionResult New()
+        {
+            var customerViewModel = new CustomerViewModel
+            {
+                MembershipTypes = _context.MembershipType.ToList()
+            };
+
+            return View(customerViewModel);
         }
 
         // GET: Customers

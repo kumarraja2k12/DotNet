@@ -4,11 +4,11 @@
     ViewData["Title"] = "Customer Details";
 }
 
-<h1>Details</h1>
+<h1>Name: @Model.Name<</h1>
 
 <div>
     <hr />
-    <h4>Name: @Model.Name</h4>
+    <h4>Membership Type: @Model.MembershipType.Name</h4>
     @if (!string.IsNullOrEmpty(Model.DateOfBirth))
     {
         <h4>Date of Birth: @Model.DateOfBirth</h4>
