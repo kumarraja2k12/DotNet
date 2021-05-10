@@ -17,6 +17,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(CustomerViewModel model)
         {
             if (model.Customer.ID == 0)
